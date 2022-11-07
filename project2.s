@@ -47,7 +47,7 @@ loop:
         beq $t4,$zero,check_a_to_p # if $t0 0 instead of 1, do the next check
     
         addi $t0,$t0,-48 # convert ascii value to integer (0-9 ascii: 48-57)
-        j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
+        j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
 
     check_a_to_p:
@@ -58,7 +58,7 @@ loop:
         beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-87 # convert ascii value to integer (a-p ascii: 97-112; a-p here: 10-25)
-        j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
+        j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
     check_A_to_P:
         li $t2,1 # first non-space char found
@@ -66,6 +66,10 @@ loop:
         bne $t4,$zero,check_A_to_P # if $t4 not 0, do the next check
         slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
         beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
+
+        addi $t0,$t0,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
+        j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
+
 
 add_to_running_sum:
     addu $v1,$v1,$t0
