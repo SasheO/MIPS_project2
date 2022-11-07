@@ -30,7 +30,7 @@ convert_string_to_decimal:
 
 li $t1,32 # holds space char
 li $v0,0 # initialized to invalid
-li $v1,0 # initialized to 0
+li $v1,0 # initialized to 0 - running sum
 li $t2,0 # will hold 1 if first non-space char found
 li $t3,0 # will hold 1 if spaces found after first non-space char
 
@@ -49,10 +49,10 @@ loop:
         addi $t0,$t0,-48 # convert ascii value to integer (0-9 ascii: 48-57)
         j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
-j loop
 
 add_to_running_sum:
-
+    addu $v1,$v1,$t0
+    j loop
 
 exit_subprogram:
 jr $ra
