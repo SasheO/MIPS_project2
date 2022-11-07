@@ -43,7 +43,7 @@ loop:
         li $t2,1 # first non-space char found
         slti $t4,$t0,48 # the string char in $t1 should be greater than or equal to '0' char i.e. $t4 should be 0
         bne $t4,$zero,check_a_to_p # if $t4 not 0, do the next check
-        slti $t4,$t0,58 # check if character <= ascii code for 9 # the string char in $t1 should be less than or equal to '9' char i.e. $t0 should be 1
+        slti $t4,$t0,58 # check if character <= ascii code for 9 # the string char in $t0 should be less than or equal to '9' char i.e. $t0 should be 1
         beq $t4,$zero,check_a_to_p # if $t0 0 instead of 1, do the next check
     
         addi $t0,$t0,-48 # convert ascii value to integer (0-9 ascii: 48-57)
@@ -53,19 +53,19 @@ loop:
     check_a_to_p:
         li $t2,1 # first non-space char found
         slti $t4,$t0,97 # the string char in $t1 should be greater than or equal to 'a' char i.e. $t0 should be 0
-        bne $t0,$zero,check_A_to_P # if $t0 not 0, do the next check
-        slti $t4,$t0,$113 # check if character <= ascii code for 'p' # the string char in $t1 should be less than or equal to 'p' char i.e. $t0 should be 1
-        beq $t0,$zero,check_A_to_P # if $t0 0 instead of 1, do the next check
+        bne $t4,$zero,check_A_to_P # if $t4 not 0, do the next check
+        slti $t4,$t0,$113 # check if character <= ascii code for 'p' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
+        beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-87 # convert ascii value to integer (a-p ascii: 97-112; a-p here: 10-25)
         j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
     check_A_to_P:
         li $t2,1 # first non-space char found
-        slti $t4,$t0,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t0 should be 0
-        bne $t0,$zero,check_A_to_P # if $t0 not 0, do the next check
-        slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t1 should be less than or equal to 'p' char i.e. $t0 should be 1
-        beq $t0,$zero,check_A_to_P # if $t0 0 instead of 1, do the next check
+        slti $t4,$t0,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t4 should be 0
+        bne $t4,$zero,check_A_to_P # if $t4 not 0, do the next check
+        slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
+        beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
 
 add_to_running_sum:
     addu $v1,$v1,$t0
