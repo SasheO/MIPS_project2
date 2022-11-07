@@ -19,15 +19,20 @@ convert_string_to_decimal:
 ##################################################
 # input registers used: $a0
 # output registers used: 
-#       $v0 - whether string is invalid or not
+#       $v0 - whether string is invalid (0) or not (non-zero)
 #       $v1 - the convert_string_to_decimal value of string, if valid
-#       temporary registers used: $t0
+#       temporary registers used: $t0,$t1,$t2,$t3
 #
-# should pass test case of no input string, all spaces input string
 #
 # called by main
 # calls none
 ###################################################
+
+li $t1,32 # holds space char
+li $v0,0 # initialized to invalid
+li $v1,0 # initialized to 0
+li $t2,0 # will hold 1 if first non-space char found
+li $t3,0 # will hold 1 if spaces found after first non-space char
 
 loop:
     lb $t0,0($a0) # load character at this of string into $t0
