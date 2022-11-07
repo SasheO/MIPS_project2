@@ -61,7 +61,7 @@ loop:
     check_a_to_p:
         slti $t4,$t0,97 # the string char in $t1 should be greater than or equal to 'a' char i.e. $t0 should be 0
         bne $t4,$zero,check_A_to_P # if $t4 not 0, do the next check
-        slti $t4,$t0,$113 # check if character <= ascii code for 'p' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
+        slti $t4,$t0,113 # check if character <= ascii code for 'p' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
         beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-87 # convert ascii value to integer (a-p ascii: 97-112; a-p here: 10-25)
@@ -70,7 +70,7 @@ loop:
     check_A_to_P:
         slti $t4,$t0,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t4 should be 0
         bne $t4,$zero,check_space_char # if $t4 not 0, do the next check
-        slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
+        slti $t4,$t0,81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
         beq $t4,$zero,check_space_char # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
@@ -91,6 +91,7 @@ loop:
         jr $ra
 
 add_to_running_sum:
+    li $v0,1 # valid chars have been found
     addi $t2,$t2,1 # increment number of valid characters found
     addu $v1,$v1,$t0
     j loop
