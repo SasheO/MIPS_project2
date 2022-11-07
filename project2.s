@@ -40,12 +40,19 @@ loop:
     addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character in the next loop
 
     check_0_to_9:
+        li $t2,1 # first non-space char found
         slti $t4,$t0,48 # the string char in $t1 should be greater than or equal to '0' char i.e. $t4 should be 0
         bne $t4,$zero,check_a_to_p # if $t4 not 0, do the next check
         slti $t4,$t0,58 # check if character <= ascii code for 9 # the string char in $t1 should be less than or equal to '9' char i.e. $t0 should be 1
         beq $t4,$zero,check_a_to_p # if $t0 0 instead of 1, do the next check
+    
+        addi $t0,$t0,-48 # convert ascii value to integer (0-9 ascii: 48-57)
+        j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
 j loop
+
+add_to_running_sum:
+
 
 exit_subprogram:
 jr $ra
