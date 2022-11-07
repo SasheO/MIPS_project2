@@ -81,6 +81,7 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
     
     check_space_char:
+        # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
         # if first valid char has been found, update $t3 to 1
         # else, do nothing. (j loop)
         bne $t2,$zero,update_t3_to_one
@@ -90,7 +91,7 @@ loop:
             addi $t3,$t3,1
             j loop
 
-    for_non_valid_chars:
+    for_non_valid_inputs:
         li $v0,0
         jr $ra
 
