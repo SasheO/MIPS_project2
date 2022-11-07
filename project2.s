@@ -80,7 +80,9 @@ loop:
             addi $t3,$t3,1
             j loop
 
-
+    for_non_valid_chars:
+        li $v0,0
+        jr $ra
 
 add_to_running_sum:
     addu $v1,$v1,$t0
