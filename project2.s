@@ -14,15 +14,19 @@ jal convert_string_to_decimal
 
 addu $t0,$v0,$zero
 beq $t0,$zero,print_unrecognized_input
-
+j print_decimal_char
 
 print_unrecognized_input:
     li $v0,4
     la $a0,unrecognized_input
     syscall
+    j exit_program
 
-li $v0,10
-syscall
+print_decimal_char: # for valid inputs
+
+exit_program:
+    li $v0,10
+    syscall
 
 convert_string_to_decimal:
 ##################################################
