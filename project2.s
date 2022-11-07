@@ -71,7 +71,15 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
     
     check_space_char:
-        
+        # if first valid char has been found, update $t3 to 1
+        # else, do nothing. (j loop)
+        bne $t2,$zero,update_t3_to_one
+        j loop
+
+        update_t3_to_one:
+            addi $t3,$t3,1
+            j loop
+
 
 
 add_to_running_sum:
