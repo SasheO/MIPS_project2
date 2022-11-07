@@ -12,6 +12,15 @@ syscall
 
 jal convert_string_to_decimal
 
+addu $t0,$v0,$zero
+beq $t0,$zero,print_unrecognized_input
+
+
+print_unrecognized_input:
+    li $v0,4
+    la $a0,unrecognized_input
+    syscall
+
 li $v0,10
 syscall
 
