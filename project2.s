@@ -61,6 +61,11 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
     check_A_to_P:
+        li $t2,1 # first non-space char found
+        slti $t4,$t0,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t0 should be 0
+        bne $t0,$zero,check_A_to_P # if $t0 not 0, do the next check
+        slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t1 should be less than or equal to 'p' char i.e. $t0 should be 1
+        beq $t0,$zero,check_A_to_P # if $t0 0 instead of 1, do the next check
 
 add_to_running_sum:
     addu $v1,$v1,$t0
