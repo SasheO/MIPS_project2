@@ -10,7 +10,7 @@ la $a0,input_str
 li $a1,1001
 syscall 
 
-
+jal convert_string_to_decimal
 
 li $v0,10
 syscall
@@ -23,4 +23,10 @@ convert_string_to_decimal:
 #       $v1 - the convert_string_to_decimal value of string, if valid
 ###################################################
 
+loop:
+    lb $t0,0($a0) # load character at this of string into $t0
+    beq $t0,$zero,exit_subprogram # when null char is read
+    addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character in the next loop
+
+exit_subprogram:
 jr $ra
