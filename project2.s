@@ -40,7 +40,6 @@ loop:
     addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character in the next loop
 
     check_0_to_9:
-        addi $t2,$t2,1 # increment number of valid characters found
         slti $t4,$t0,48 # the string char in $t1 should be greater than or equal to '0' char i.e. $t4 should be 0
         bne $t4,$zero,check_a_to_p # if $t4 not 0, do the next check
         slti $t4,$t0,58 # check if character <= ascii code for 9 # the string char in $t0 should be less than or equal to '9' char i.e. $t0 should be 1
@@ -51,7 +50,6 @@ loop:
 
 
     check_a_to_p:
-        addi $t2,$t2,1 # increment number of valid characters found
         slti $t4,$t0,97 # the string char in $t1 should be greater than or equal to 'a' char i.e. $t0 should be 0
         bne $t4,$zero,check_A_to_P # if $t4 not 0, do the next check
         slti $t4,$t0,$113 # check if character <= ascii code for 'p' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
@@ -61,7 +59,6 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
     check_A_to_P:
-        addi $t2,$t2,1 # increment number of valid characters found
         slti $t4,$t0,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t4 should be 0
         bne $t4,$zero,check_space_char # if $t4 not 0, do the next check
         slti $t4,$t0,$81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
@@ -85,6 +82,7 @@ loop:
         jr $ra
 
 add_to_running_sum:
+    addi $t2,$t2,1 # increment number of valid characters found
     addu $v1,$v1,$t0
     j loop
 
