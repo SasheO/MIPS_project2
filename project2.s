@@ -79,6 +79,10 @@ loop:
 
         addi $t0,$t0,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
+
+    for_non_valid_inputs:
+        li $v0,0
+        jr $ra
     
     check_space_char:
         # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
@@ -90,10 +94,6 @@ loop:
         update_t3_to_one:
             addi $t3,$t3,1
             j loop
-
-    for_non_valid_inputs:
-        li $v0,0
-        jr $ra
 
 add_to_running_sum:
     li $v0,1 # valid chars have been found
