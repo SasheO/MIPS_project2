@@ -37,7 +37,7 @@ convert_string_to_decimal:
 # output registers used: 
 #       $v0 - whether string is invalid (0) or not (non-zero)
 #       $v1 - the convert_string_to_decimal value of string, if valid
-#       temporary registers used: $t0,$t1,$t2,$t3,$t4
+#       temporary registers used: $t0,$t1,$t2,$t3,$t4,$t5
 #
 #
 # called by main
@@ -101,6 +101,9 @@ loop:
 add_to_running_sum:
     li $v0,1 # valid chars have been found
     addi $t2,$t2,1 # increment number of valid characters found
+    # check if too many valid chars found (5+)
+    li $t5,5
+    beq $t2,$t5,for_non_valid_inputs
     addu $v1,$v1,$t0
     j loop
 
