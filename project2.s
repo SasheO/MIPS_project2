@@ -61,6 +61,7 @@ loop:
         beq $t4,$zero,check_a_to_p # if $t0 0 instead of 1, do the next check
     
         addi $t0,$t0,-48 # convert ascii value to integer (0-9 ascii: 48-57)
+        bne $t3,0,for_non_valid_inputs # if spaces are sandwiched between chars, it is a non-valid input
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
 
@@ -71,6 +72,7 @@ loop:
         beq $t4,$zero,check_A_to_P # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-87 # convert ascii value to integer (a-p ascii: 97-112; a-p here: 10-25)
+        bne $t3,0,for_non_valid_inputs # if spaces are sandwiched between chars, it is a non-valid input
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
     check_A_to_P:
@@ -80,6 +82,7 @@ loop:
         beq $t4,$zero,for_non_valid_inputs # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
+        bne $t3,0,for_non_valid_inputs # if spaces are sandwiched between chars, it is a non-valid input
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
     update_t3_to_one:
