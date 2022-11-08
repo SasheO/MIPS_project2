@@ -23,6 +23,9 @@ print_unrecognized_input:
     j exit_program
 
 print_decimal_char: # for valid inputs
+    li $v0,1
+    addu $a0,$v1,$zero
+    syscall
 
 exit_program:
     li $v0,10
