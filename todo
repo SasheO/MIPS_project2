@@ -1,2 +1,2 @@
-- check for spaces. if it is not a space, it is an invalid character according to the order of the program. branch to check for non-valid inputs.
-- in a-p, 0-9, A-P checks, check if both a space has been found between it and another set of valid characters (i.e. t3!=0, t2!=0). If so, this input is non-valid
+- check for spaces and tabs. if it is not a space/tab, it is an invalid character according to the order of the program. branch to check for non-valid inputs.
+- in a-p, 0-9, A-P checks, check if both a space/tab has been found between it and another set of valid characters (i.e. t3!=0, t2!=0). If so, this input is non-valid
