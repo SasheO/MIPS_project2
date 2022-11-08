@@ -75,14 +75,14 @@ loop:
 
     check_A_to_P:
         slti $t4,$t0,65 # the string char in $t0 should be greater than or equal to 'A' char i.e. $t4 should be 0
-        bne $t4,$zero,check_space_char # if $t4 not 0, do the next check
+        bne $t4,$zero,for_non_valid_inputs # if $t4 not 0, do the next check
         slti $t4,$t0,81 # check if character <= ascii code for 'P' # the string char in $t0 should be less than or equal to 'p' char i.e. $t4 should be 1
-        beq $t4,$zero,check_space_char # if $t4 0 instead of 1, do the next check
+        beq $t4,$zero,for_non_valid_inputs # if $t4 0 instead of 1, do the next check
 
         addi $t0,$t0,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
     
-    check_space_char:
+    check_space_char: 
         # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
         li $t1,32 # holds space/tab char
         li $t1,9 # holds space/tab char
@@ -96,6 +96,13 @@ loop:
             j loop
 
     for_non_valid_inputs:
+        # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
+        li $t1,32 # holds space char ascii value
+        beq $t0,$t1,update_t3_to_one # if current char is space, update $t3
+        li $t1,9 # holds tab char ascii value
+        beq $t0,$t1,update_t3_to_one # if current char is space, update $t3
+
+        # any other character is invalid
         li $v0,0
         jr $ra
 
