@@ -44,7 +44,6 @@ convert_string_to_decimal:
 # calls none
 ###################################################
 
-li $t1,32 # holds space char
 li $v0,0 # initialized to invalid
 li $v1,0 # initialized to 0 - running sum
 li $t2,0 # will hold how many valid characters found
@@ -85,6 +84,8 @@ loop:
     
     check_space_char:
         # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
+        li $t1,32 # holds space/tab char
+        li $t1,9 # holds space/tab char
         # if first valid char has been found, update $t3 to 1
         # else, do nothing. (j loop)
         bne $t2,$zero,update_t3_to_one
