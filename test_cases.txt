@@ -28,14 +28,16 @@ ab- 2,271
 a b- Unrecognized input
 axyx- Unrecognized input
 a@p- Unrecognized input
-1a- 2,23
+1a- 2,36
 PPPP- 4,456975
 - Unrecognized input
 q- Unrecognized input
       a                                                                    - 10
-          111                             -3,703
+          111                             -(mix of tabs and spaces) 3,703
+                    111       1                      -Unrecognized input
           (all spaces)- Unrecognized input
    u1   b -Unrecognized input
-1Mp0- 4,18924
+1Mp0- 4,33098
 00000- Unrecognized input
 0000- 4,0
+9999- 4,164511
