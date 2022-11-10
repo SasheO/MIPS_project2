@@ -61,8 +61,7 @@ li $v1,0 # initialized to 0 - running sum
 li $t2,0 # will hold how many valid characters found
 li $t3,0 # will hold 1 if spaces found after first non-space char
 li $t6,10 # will hold enter character
-li $t7,1 # will hold the value of base 26 to multiply base-26 numbers by for the sum
-li $t8,26 # holds the value of the base
+li $t7,26 # will hold the value of base 26 to multiply base-26 numbers by for the sum
 
 loop:
     lb $t0,0($a0) # load character at this of string into $t0
@@ -123,8 +122,7 @@ add_to_running_sum:
     li $t5,5
     beq $t2,$t5,for_non_valid_inputs
     mul $v1,$v1,$t7 # multiple previous sum by power of 26
-    addu $v1,$v1,$t0 # add new digit
-    mul $t7,$t7,$t8 # increase power of base 26 for the next valid digit add_to_running_sum
+    addu $v1,$v1,$t0 # add current valid digit
     j loop
 
 exit_subprogram:
