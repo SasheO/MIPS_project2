@@ -1,0 +1,40 @@
+n = 26 + (03004056%11) = 26 + 0 = 26
+number to multiply by = n - 25 = 26 - 25 = 1
+
+base: 26
+
+characters:
+0-9
+aA 10
+bB 11
+cC 12
+dD 13
+eE 14
+fF 15
+gG 16
+hH 17
+iI 18
+jJ 19
+kK 20
+lL 21
+mM 22
+nN 23
+oO 24
+pP 25
+
+Test cases input- output:
+0000000000- 0
+0000000001- 1
+1000000000- 1
+1111111111- 10
+9999999999- 90
+aaaaaAAAAA- 100
+PPPPpppppp- 250
+12345ABcst- 48
+vwXYZ!@#$%- 0
+u1wxYZ!b$!- 12
+          (all spaces)- 0
+   u1   b -12
+qqqqQQQQQQ- 0
+mnopabcD00- 140
+m$oPabCD00- 117
