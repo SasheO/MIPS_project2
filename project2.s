@@ -22,6 +22,7 @@ print_unrecognized_input:
     syscall
     j exit_program
 
+# TODO: print no of valid chars, comma (ascii 44), then sum
 print_decimal_char: # for valid inputs
     li $v0,1
     addu $a0,$v1,$zero
@@ -111,4 +112,8 @@ add_to_running_sum:
     j loop
 
 exit_subprogram:
+# push $t2 (no of valid chars found) to stack
+addi $sp,$sp,-4
+sw $t2,0($sp)
+addi $sp,$sp,4
 jr $ra
