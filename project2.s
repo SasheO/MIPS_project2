@@ -24,6 +24,13 @@ print_unrecognized_input:
 
 # TODO: print no of valid chars, comma (ascii 44), then sum
 print_decimal_char: # for valid inputs, print no of valid chars (stored in stack), comma (ascii 44), then decimal value (stored in $v1 from exit_subprogram)
+
+    addi $sp,$sp,-4
+    lw $a0,0($sp)
+    li $v0,1 # print integer
+    addi $sp,$sp,4
+    syscall # print number of valid characters stored in stack
+
     li $v0, 11
     li $a0, 44
     syscall # print comma
