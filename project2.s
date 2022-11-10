@@ -23,7 +23,11 @@ print_unrecognized_input:
     j exit_program
 
 # TODO: print no of valid chars, comma (ascii 44), then sum
-print_decimal_char: # for valid inputs
+print_decimal_char: # for valid inputs, print no of valid chars (stored in stack), comma (ascii 44), then decimal value (stored in $v1 from exit_subprogram)
+    li $v0, 11
+    li $a0, 44
+    syscall # print comma
+
     li $v0,1
     addu $a0,$v1,$zero
     syscall
@@ -38,7 +42,8 @@ convert_string_to_decimal:
 # output registers used: 
 #       $v0 - whether string is invalid (0) or not (non-zero)
 #       $v1 - the convert_string_to_decimal value of string, if valid
-#       temporary registers used: $t0,$t1,$t2,$t3,$t4,$t5,$t6
+#       output stack: 1 word for storing no of valid chars
+#       temporary regesters used: $t0,$t1,$t2,$t3,$t4,$t5,$t6
 #
 #
 # called by main
