@@ -96,11 +96,12 @@ loop:
         jr $ra
         
         update_t3_to_one:
-            addi $t3,$t3,1
+            beq $v0,$zero,loop # if no valid chars have been found i.e. space/tab is leading sandwiched between valid chars, loop again
+            addi $t3,$t3,1 # if space/tab is after valid character, update t3
             j loop
 
 add_to_running_sum:
-    bne $t3,0,for_non_valid_inputs # if spaces are sandwiched between chars, it is a non-valid input
+    bne $t3,0,for_non_valid_inputs # if spaces/tabs are sandwiched between chars, it is a non-valid input
     li $v0,1 # valid chars have been found
     addi $t2,$t2,1 # increment number of valid characters found
     # check if too many valid chars found (5+)
