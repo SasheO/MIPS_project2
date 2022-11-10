@@ -37,7 +37,7 @@ convert_string_to_decimal:
 # output registers used: 
 #       $v0 - whether string is invalid (0) or not (non-zero)
 #       $v1 - the convert_string_to_decimal value of string, if valid
-#       temporary registers used: $t0,$t1,$t2,$t3,$t4,$t5
+#       temporary registers used: $t0,$t1,$t2,$t3,$t4,$t5,$t6
 #
 #
 # called by main
@@ -48,12 +48,12 @@ li $v0,0 # initialized to invalid
 li $v1,0 # initialized to 0 - running sum
 li $t2,0 # will hold how many valid characters found
 li $t3,0 # will hold 1 if spaces found after first non-space char
-li $t9,10 # will hold enter character
+li $t6,10 # will hold enter character
 
 loop:
     lb $t0,0($a0) # load character at this of string into $t0
     beq $t0,$zero,exit_subprogram # when null char is read
-    beq $t0,$t9,exit_subprogram # when enter char is read in case less than 1000 chars read and the user clicks enter
+    beq $t0,$t6,exit_subprogram # when enter char is read in case less than 1000 chars read and the user clicks enter
     addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character in the next loop
 
     check_0_to_9:
