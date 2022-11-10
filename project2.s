@@ -22,7 +22,6 @@ print_unrecognized_input:
     syscall
     j exit_program
 
-# TODO: print no of valid chars, comma (ascii 44), then sum
 print_decimal_char: # for valid inputs, print no of valid chars (stored in stack), comma (ascii 44), then decimal value (stored in $v1 from exit_subprogram)
 
     addi $sp,$sp,-4
@@ -113,6 +112,7 @@ loop:
             addi $t3,$t3,1 # if space/tab is after valid character, update t3
             j loop
 
+# TODO: convert to base n, do not just add the value of char
 add_to_running_sum:
     bne $t3,0,for_non_valid_inputs # if spaces/tabs are sandwiched between chars, it is a non-valid input
     li $v0,1 # valid chars have been found
