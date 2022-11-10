@@ -98,22 +98,21 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $v1, the running sum
 
     for_non_valid_inputs:
-        # TODO: check if space char, if not it is invalid. branch to for_non_valid_inputs
+        # check if space char, if not it is invalid. input is invalid
         li $t1,32 # holds space char ascii value
-        beq $t0,$t1,update_t3_to_one # if current char is space, update $t3
+        beq $t0,$t1,space_found_after_or_between_valid_chars # if current char is space, update $t3
         li $t1,9 # holds tab char ascii value
-        beq $t0,$t1,update_t3_to_one # if current char is space, update $t3
+        beq $t0,$t1,space_found_after_or_between_valid_chars # if current char is space, update $t3
 
         # any other character is invalid
         li $v0,0
         jr $ra
         
-        update_t3_to_one:
-            beq $v0,$zero,loop # if no valid chars have been found i.e. space/tab is leading sandwiched between valid chars, loop again
+        space_found_after_or_between_valid_chars:
+            beq $v0,$zero,loop # if no valid chars have been found i.e. space/tab is leading, not sandwiched between valid chars, loop again
             addi $t3,$t3,1 # if space/tab is after valid character, update t3
             j loop
 
-# TODO: convert to base n, do not just add the value of char
 add_to_running_sum:
     bne $t3,0,for_non_valid_inputs # if spaces/tabs are sandwiched between chars, it is a non-valid input
     li $v0,1 # valid chars have been found
